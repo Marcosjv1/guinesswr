@@ -1,0 +1,28 @@
+body {
+  background-color: #f5f7fb;
+  color: #1b1f3b;
+}
+
+.hero-section {
+  min-height: 45vh;
+  background: linear-gradient(135deg, #001f54, #034078);
+}
+
+.status-badge {
+  background-color: #6c757d;
+  font-size: 0.9rem;
+  padding: 0.6rem 0.9rem;
+}
+
+.status-ok {
+  background-color: #198754 !important;
+}
+
+.status-error {
+  background-color: #dc3545 !important;
+}
+
+.record-card img {
+  height: 220px;
+  object-fit: cover;
+}
