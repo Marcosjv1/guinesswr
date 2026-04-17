@@ -49,12 +49,17 @@ const updateRecord = async (req, res, next) => {
 
 const deleteRecord = async (req, res, next) => {
   try {
-    const deletedRecord = await Record.findByIdAndDelete(req.params.id);
+    const record = await Record.findById(req.params.id);
 
-    if (!deletedRecord) {
+    if (!record) {
       return res.status(404).json({ message: 'Récord no encontrado' });
     }
 
+    if (record.isOficial) {
+      return res.status(403).json({ message: 'No se puede eliminar un récord oficial' });
+    }
+
+    await Record.findByIdAndDelete(req.params.id);
     res.status(200).json({ message: 'Récord eliminado correctamente' });
   } catch (error) {
     next(error);

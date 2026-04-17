@@ -27,6 +27,10 @@ const recordSchema = new mongoose.Schema(
       required: [true, 'La URL de imagen es obligatoria'],
       trim: true,
     },
+    isOficial: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

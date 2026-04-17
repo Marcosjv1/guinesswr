@@ -21,6 +21,7 @@ const renderRecords = (records) => {
           <img src="${record.imagenUrl}" class="card-img-top" alt="${record.titulo}" />
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">${record.titulo}</h5>
+            
             <p class="card-text">${record.descripcion}</p>
             <ul class="list-group list-group-flush mt-auto">
               <li class="list-group-item"><strong>Poseedor:</strong> ${record.poseedor}</li>
