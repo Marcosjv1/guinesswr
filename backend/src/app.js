@@ -13,11 +13,17 @@ app.use(
 
 app.use(express.json());
 
+// Ruta de salud que ya tenías
 app.get('/api/health', (req, res) => {
   res.status(200).json({
     ok: true,
     message: 'Backend funcionando correctamente',
   });
+});
+
+// AGREGA ESTO AQUÍ PARA QUE LA RAÍZ FUNCIONE
+app.get('/', (req, res) => {
+  res.send('Bienvenido a la API de Guinness World Records');
 });
 
 app.use('/api/records', recordRoutes);
