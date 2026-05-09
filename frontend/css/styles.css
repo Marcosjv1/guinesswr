@@ -26,3 +26,11 @@ body {
   height: 220px;
   object-fit: cover;
 }
+
+#loginSection {
+  margin-bottom: 2rem;
+}
+
+#loginMessage {
+  font-weight: 600;
+}

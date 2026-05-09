@@ -18,10 +18,9 @@ const renderRecords = (records) => {
       (record) => `
       <div class="col-md-6 col-lg-4">
         <div class="card h-100 shadow-sm record-card">
-          <img src="${record.imagenUrl}" class="card-img-top" alt="${record.titulo}" />
+          <img src="${record.imagenUrl}" class="card-img-top" alt="${record.titulo}" onerror="this.onerror=null;this.src='https://placehold.co/400x220?text=Sin+imagen'" />
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">${record.titulo}</h5>
-            
             <p class="card-text">${record.descripcion}</p>
             <ul class="list-group list-group-flush mt-auto">
               <li class="list-group-item"><strong>Poseedor:</strong> ${record.poseedor}</li>
@@ -43,8 +42,9 @@ const checkBackendConnection = async () => {
     backendStatus.textContent = '';
     backendStatus.style.display = 'none';
   } catch (error) {
-    backendStatus.textContent = '';
-    backendStatus.style.display = 'none';
+    backendStatus.textContent = 'Backend no disponible';
+    backendStatus.classList.add('status-error');
+    backendStatus.style.display = 'inline-block';
   }
 };
 
@@ -76,16 +76,20 @@ form.addEventListener('submit', async (e) => {
   try {
     const response = await fetch(`${API_BASE_URL}/records`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(payload),
     });
 
-    if (!response.ok) throw new Error('Error al crear récord');
+    if (!response.ok) {
+      throw new Error('Error al crear récord');
+    }
 
     form.reset();
     await fetchRecords();
   } catch (error) {
-    alert('No se pudo crear el récord');
+    alert('No se pudo crear el récord: ' + error.message);
   }
 });
 
