@@ -20,7 +20,10 @@ const renderRecords = (records) => {
         <div class="card h-100 shadow-sm record-card">
           <img src="${record.imagenUrl}" class="card-img-top" alt="${record.titulo}" onerror="this.onerror=null;this.src='https://placehold.co/400x220?text=Sin+imagen'" />
           <div class="card-body d-flex flex-column">
-            <h5 class="card-title">${record.titulo}</h5>
+            <div class="d-flex justify-content-between align-items-start mb-1">
+              <h5 class="card-title mb-0">${record.titulo}</h5>
+              ${!record.isOficial ? `<button class="btn btn-sm btn-delete ms-2" data-id="${record._id}" title="Eliminar récord">🗑️</button>` : ''}
+            </div>
             <p class="card-text">${record.descripcion}</p>
             <ul class="list-group list-group-flush mt-auto">
               <li class="list-group-item"><strong>Poseedor:</strong> ${record.poseedor}</li>
@@ -33,6 +36,32 @@ const renderRecords = (records) => {
     )
     .join('');
 };
+
+const deleteRecord = async (id) => {
+  if (!confirm('¿Seguro que quieres eliminar este récord?')) return;
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/records/${id}`, {
+      method: 'DELETE',
+    });
+
+    if (!response.ok) {
+      const data = await response.json();
+      throw new Error(data.message || 'Error al eliminar');
+    }
+
+    await fetchRecords();
+  } catch (error) {
+    alert('No se pudo eliminar el récord: ' + error.message);
+  }
+};
+
+recordsContainer.addEventListener('click', (e) => {
+  const btn = e.target.closest('.btn-delete');
+  if (btn) {
+    deleteRecord(btn.dataset.id);
+  }
+});
 
 const checkBackendConnection = async () => {
   try {
