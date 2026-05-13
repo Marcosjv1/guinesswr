@@ -34,3 +34,19 @@ body {
 #loginMessage {
   font-weight: 600;
 }
+
+.btn-delete {
+  background: none;
+  border: none;
+  padding: 2px 6px;
+  font-size: 1rem;
+  line-height: 1;
+  opacity: 0.55;
+  transition: opacity 0.2s, transform 0.15s;
+  flex-shrink: 0;
+}
+
+.btn-delete:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}

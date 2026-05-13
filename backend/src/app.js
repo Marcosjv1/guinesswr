@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const recordRoutes = require('./routes/recordRoutes');
 const authRoutes = require('./routes/authRoutes');
+const contactRoutes = require('./routes/contactRoutes');
 const errorHandler = require('./middlewares/errorHandler');
 
 const app = express();
@@ -29,11 +30,12 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/records', recordRoutes);
+app.use('/api/contact', contactRoutes);
 
 // Compatibilidad para frontend servido como archivo (file://)
-// Cuando se usa file://, algunas peticiones pueden perder el prefijo /api.
 app.use('/auth', authRoutes);
 app.use('/records', recordRoutes);
+app.use('/contact', contactRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Ruta no encontrada: ' + req.originalUrl });
