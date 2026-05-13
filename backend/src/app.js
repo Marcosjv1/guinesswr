@@ -32,7 +32,6 @@ app.use('/api/auth', authRoutes);
 app.use('/api/records', recordRoutes);
 app.use('/api/contact', contactRoutes);
 
-// Compatibilidad para frontend servido como archivo (file://)
 app.use('/auth', authRoutes);
 app.use('/records', recordRoutes);
 app.use('/contact', contactRoutes);

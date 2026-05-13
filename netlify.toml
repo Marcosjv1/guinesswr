@@ -1,0 +1,9 @@
+[build]
+  publish = "frontend"
+  command = ""
+
+# Opcional: si usas SPA con rutas del lado cliente, activa esto:
+# [[redirects]]
+#   from = "/*"
+#   to = "/index.html"
+#   status = 200
