@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'https://guinesswr.onrender.com/api';
 const recordsContainer = document.getElementById('recordsContainer');
 const form = document.getElementById('recordForm');
 const backendStatus = document.getElementById('backendStatus');
